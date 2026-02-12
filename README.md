@@ -1,20 +1,18 @@
 # CRUD de tareas en fichero (Jakarta EE + WildFly)
 
-[Enunciado de la práctica (P5.3 - Informe RA3)](docs/DAW-U5-Practica003.md)
-
 Aplicación sencilla con API CRUD y una interfaz web básica para gestionar tareas. Los datos se almacenan en un fichero JSON dentro del directorio de datos de WildFly.
 
 ## Funcionalidad
 - API REST `CRUD` para tareas.
-- Interfaz web básica (HTML + JS) para crear, editar, marcar y borrar.
+- Interfaz web basica (HTML + JS) para crear, editar, marcar y borrar.
 - Persistencia en fichero JSON.
 
 ## Endpoints
-- `GET /crud-file/api/tasks`
-- `GET /crud-file/api/tasks/{id}`
-- `POST /crud-file/api/tasks`
-- `PUT /crud-file/api/tasks/{id}`
-- `DELETE /crud-file/api/tasks/{id}`
+- `GET http://localhost:8080/app/api/tasks`
+- `GET http://localhost:8080/app/api/tasks/{id}`
+- `POST http://localhost:8080/app/api/tasks`
+- `PUT http://localhost:8080/app/api/tasks/{id}`
+- `DELETE http://localhost:8080/app/api/tasks/{id}`
 
 Ejemplo de payload:
 ```json
@@ -23,28 +21,28 @@ Ejemplo de payload:
 
 ## Probar la API con curl
 Base URL (si el WAR está desplegado en localhost):
-`http://localhost:8080/crud-file/api/tasks`
+`http://localhost:8080/app/api/tasks`
 
 Listar tareas:
 ```bash
-curl -s http://localhost:8080/crud-file/api/tasks
+curl -s http://localhost:8080/app/api/tasks
 ```
 
 Crear tarea:
 ```bash
-curl -s -X POST http://localhost:8080/crud-file/api/tasks \
+curl -s -X POST http://localhost:8080/app/api/tasks \
   -H "Content-Type: application/json" \
   -d '{ "title": "Comprar pan", "done": false }'
 ```
 
-Obtener tarea por id:
+Obtener tarea por ID:
 ```bash
-curl -s http://localhost:8080/crud-file/api/tasks/1
+curl -s http://localhost:8080/app/api/tasks/1
 ```
 
 Actualizar tarea:
 ```bash
-curl -s -X PUT http://localhost:8080/crud-file/api/tasks/1 \
+curl -s -X PUT http://localhost:8080/app/api/tasks/1 \
   -H "Content-Type: application/json" \
   -d '{ "title": "Comprar leche", "done": true }'
 ```
@@ -73,7 +71,7 @@ gradle war
 El WAR queda en `build/libs/crud-file.war`.
 
 ## Despliegue en WildFly (contenedor con otra app)
-Estos pasos siguen el mismo procedimiento de la práctica para levantar WildFly y luego desplegar este WAR en el mismo contenedor.
+Estos pasos siguen el mismo procedimiento de la practica para levantar WildFly y luego desplegar este WAR en el mismo contenedor.
 
 ### Opción A: levantar contenedor desde cero
 #### 1) Preparar el entorno Docker
@@ -123,11 +121,11 @@ docker ps
 
 3) Copia el WAR al contenedor existente:
 ```bash
-docker cp build/libs/crud-file.war wildfly:/opt/jboss/wildfly/standalone/deployments/
+docker cp build/libs/app.war wildfly:/opt/jboss/wildfly/standalone/deployments/
 ```
 
-Tras el despliegue, la aplicación estará disponible en:
-- `http://localhost:8080/crud-file/`
+Tras el despliegue, la aplicacion estara disponible en:
+- `http://localhost:8080/app/`
 
 ## Notas sobre el contenedor
 - Si usas un nombre distinto de contenedor, cambia `wildfly` en los comandos.

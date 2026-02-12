@@ -35,6 +35,7 @@ Evidencias mínimas recomendadas
   - Ejecución de comando de prueba de rendimiento (ab/hey/wrk) y resultado
   - Rutas internas del contenedor cuando apliquen
 
+[Haz clic aquí para ver el informe](./P5.3-informe-ra3.md)
 
 ### 4. Pasos a seguir
 
